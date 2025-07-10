@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animación de revelado con clip-path */
+@layer utilities {
+  .clip-hidden {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  .clip-reveal {
+    clip-path: inset(0 0 0 0);
+  }
+}
