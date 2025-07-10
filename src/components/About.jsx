@@ -23,7 +23,7 @@ const About = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-            src="/me.jpg"
+            src={`${import.meta.env.BASE_URL}me.jpg`}
             alt="Erick Guamán"
             className="w-40 h-40 object-cover rounded-full shadow-xl"
           />
