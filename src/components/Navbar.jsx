@@ -1,28 +1,81 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-scroll';
 
-export default function Navbar() {
-  const [show, setShow] = useState(false);
+const Navbar = () => {
+  const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setShow(scrollY > 50);
+      setShowNavbar(window.scrollY > 100);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${show ? "bg-black/80 backdrop-blur-md shadow-md" : "opacity-0 -translate-y-full"}`}>
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center text-white">
-        <h1 className="text-xl font-bold">Erick Guamán Cedeño</h1>
-        <ul className="flex gap-6">
-          <li><a href="#projects" className="hover:text-purple-400">Proyectos</a></li>
-          <li><a href="#skills" className="hover:text-purple-400">Skills</a></li>
-          <li><a href="#contact" className="hover:text-purple-400">Contacto</a></li>
+    <nav
+      className={`fixed top-0 w-full z-50 backdrop-blur-md transition-transform duration-500 ${
+        showNavbar ? 'translate-y-0' : '-translate-y-full'
+      }`}
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Logo como botón que lleva arriba */}
+        <Link
+          to="top"
+          smooth={true}
+          duration={500}
+          offset={-70}
+          className="cursor-pointer"
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt="RCK"
+            className="h-10 w-10 object-contain"
+          />
+        </Link>
+
+        {/* Enlaces del navbar */}
+        <ul className="flex gap-6 text-white font-medium">
+          <li>
+            <Link
+              to="about"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="cursor-pointer hover:text-[#D1BABA] transition"
+            >
+              Sobre mí
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="projects"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="cursor-pointer hover:text-[#D1BABA] transition"
+            >
+              Proyectos
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="contact"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="cursor-pointer hover:text-[#D1BABA] transition"
+            >
+              Contacto
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;
