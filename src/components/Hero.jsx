@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
@@ -19,12 +20,9 @@ const Hero = () => {
       >
         <span>Hola, soy</span>
 
-        {/* CONTENEDOR NOMBRE CON DOBLE CAPA */}
         <span className="relative inline-block text-5xl font-extrabold leading-tight">
-          {/* Capa inferior (color rojo oscuro) */}
           <span className="text-[#4d0101]">Erick Guamán</span>
 
-          {/* Capa superior (color blanco), con animación clip-path */}
           <span
             className={`absolute left-0 top-0 w-full h-full text-white overflow-hidden transition-all duration-[3s] ease-in-out ${
               reveal ? "clip-reveal" : "clip-hidden"
@@ -45,14 +43,18 @@ const Hero = () => {
         Desarrollador multiplataforma con experiencia en apps móviles, web y escritorio.
       </motion.p>
 
-      <motion.a
-        href="#about"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        className="bg-[#a00000] hover:bg-[#800000] text-white px-6 py-3 rounded-full font-medium shadow-lg transition"
-      >
-        Sobre mí
-      </motion.a>
+      {/* Botón con scroll suave */}
+      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+        <Link
+          to="about"
+          smooth={true}
+          duration={600}
+          offset={-70} // ajusta si tienes navbar fija
+          className="bg-[#a00000] hover:bg-[#800000] text-white px-6 py-3 rounded-full font-medium shadow-lg transition cursor-pointer"
+        >
+          Sobre mí
+        </Link>
+      </motion.div>
     </section>
   );
 };

@@ -5,20 +5,20 @@ const projects = [
   {
     title: "Página Web para SOEP",
     description:
-      "Aplicación web de reservas con React, conectada a una API REST con gestión de usuarios, productos y pedidos.",
-    tech: ["React", "JWT", "API REST", "Node.js"],
+      "Aplicación web Fullstack sobre un estudio de tatuajes realizado con React, conectada a una API REST con gestión de usuarios, productos y pedidos.",
+    tech: ["React", "JWT", "API REST", "Node.js", "Fullstack"],
     image: "soep-project.png",
     link: "https://tu-proyecto-react.vercel.app",
-    github: "https://github.com/tuusuario/proyecto-react",
+    github: "https://github.com/erick1709/Soep",
   },
   {
-    title: "Proyecto Web sobre Hoke",
+    title: "Proyecto Angular 'RCKARNES'",
     description:
-      "Proyecto de Angular sobre el cantante Hoke y la información relevante a su obra.",
+      "Proyecto web de Angular sobre un restaurante especializado en carnes en el que se puede navegar para ver el menú, conocer la ubicación y reservar de forma ficticia. Trabajo exclusivamente de frontend.",
     tech: ["Angular", "TypeScript", "Bootstrap", "js"],
-    image: "hoke-project.webp",
+    image: "rckarnes.png",
     link: "https://tu-proyecto-angular.vercel.app",
-    github: "https://github.com/tuusuario/proyecto-angular",
+    github: "https://github.com/erick1709/Rckarnes",
   },
 ];
 
@@ -57,58 +57,47 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {projects.map((project, index) => (
-            <motion.div
+            <a
               key={project.title}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-xl"
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <div className="overflow-hidden bg-[#f2f2ef]">
-                <img
-                  src={`${import.meta.env.BASE_URL}${project.image}`}
-                  alt={project.title}
-                  className="w-full h-72 object-contain transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-6 flex flex-col justify-between h-full">
-                <div>
-                  <h3 className="text-2xl font-semibold mb-2 text-white">
-                    {project.title}
-                  </h3>
-                  <p className="text-white/90 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 text-sm mb-4">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="bg-white/20 text-white px-3 py-1 rounded-full"
-                      >
-                        {t}
-                      </span>
-                    ))}
+              <motion.div
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                className="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-xl hover:scale-[1.02] transition-transform duration-300"
+              >
+                <div className="overflow-hidden bg-[#f2f2ef]">
+                  <img
+                    src={`${import.meta.env.BASE_URL}${project.image}`}
+                    alt={project.title}
+                    className="w-full h-72 object-contain transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="p-6 flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2 text-white">
+                      {project.title}
+                    </h3>
+                    <p className="text-white/90 mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 text-sm mb-4">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="bg-white/20 text-white px-3 py-1 rounded-full"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div className="flex gap-3 mt-auto">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#a00000] hover:bg-[#800000] text-white px-4 py-2 rounded-full transition"
-                  >
-                    Ver proyecto
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border border-white text-white px-4 py-2 rounded-full hover:bg-white hover:text-[#800000] transition"
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </a>
           ))}
         </div>
       </motion.div>
